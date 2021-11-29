@@ -1,2 +1,2 @@
-# projectManager-FrontEnd
-A project Management App FrontEnd using ReactNative
+# Project-M
+A  Project Management App using Expo(React Native) and Firebase
