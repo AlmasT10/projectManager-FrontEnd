@@ -20,6 +20,7 @@ import { useNavigation } from "@react-navigation/core";
 import { readProjectTasks } from "../api/firebaseFunctions";
 import axios from "axios";
 import baseURL from "../assets/common/baseURL";
+import { adminUser } from "./LoginScreen";
 
 const TaskListScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -102,14 +103,16 @@ const TaskListScreen = ({ route }) => {
           renderItem={renderItem}
         />
       </View>
-      <FAB
-        icon={<Ionicons name="add-outline" size={24} color="white" />}
-        placement="right"
-        style={styles.fab}
-        onPress={() => {
-          navigation.navigate("CreateTask", { projectName: pName });
-        }}
-      />
+      {adminUser === true ? (
+        <FAB
+          icon={<Ionicons name="add-outline" size={24} color="white" />}
+          placement="right"
+          style={styles.fab}
+          onPress={() => {
+            navigation.navigate("CreateTask", { projectName: pName });
+          }}
+        />
+      ) : null}
     </View>
   );
 };

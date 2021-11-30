@@ -12,7 +12,7 @@ import axios from "axios";
 import baseURL from "../assets/common/baseURL";
 import AuthGlobal from "../context/store/AuthGlobal";
 import { isAdmin, loginUser } from "../context/actions/authActions";
-export let adminUser;
+export var adminUser;
 
 const LoginScreen = (props) => {
   const context = useContext(AuthGlobal);

@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/core";
 import { readProjectData } from "../api/firebaseFunctions";
 import baseURL from "../assets/common/baseURL";
 import axios from "axios";
+import { adminUser } from "./LoginScreen";
 
 const ProjectListScreen = () => {
   const [list, setList] = useState([]);
@@ -82,14 +83,16 @@ const ProjectListScreen = () => {
           renderItem={renderItem}
         />
       </View>
-      <FAB
-        icon={<Ionicons name="add-outline" size={24} color="white" />}
-        placement="right"
-        style={styles.fab}
-        onPress={() => {
-          navigation.navigate("NewProject");
-        }}
-      />
+      {adminUser === true ? (
+        <FAB
+          icon={<Ionicons name="add-outline" size={24} color="white" />}
+          placement="right"
+          style={styles.fab}
+          onPress={() => {
+            navigation.navigate("NewProject");
+          }}
+        />
+      ) : null}
     </View>
   );
 };
