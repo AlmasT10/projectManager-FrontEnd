@@ -4,13 +4,28 @@ import { Avatar, Input, Text, Button } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
 import { auth } from "../firebase";
 import { getUser } from "../api/firebaseFunctions";
+import axios from "axios";
+import baseURL from "../assets/common/baseURL";
+import { userId } from "../context/actions/authActions";
 
 const ProfileScreen = () => {
-  const user = auth.currentUser.email;
-  var cUser = getUser(user);
-  const [name, setName] = useState(cUser.name);
-  const [email, setEmail] = useState(cUser.email);
-  const [phone, setPhone] = useState(cUser.phone);
+  // const user = auth.currentUser.email;
+  // var cUser = getUser(user);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`${baseURL}users/${userId}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
 
   const [image, setImage] = useState(null);
   useEffect(() => {
@@ -62,19 +77,16 @@ const ProfileScreen = () => {
         <Input
           label="Name"
           placeholder="Enter Your Name"
-          value={cUser.name}
           onChangeText={(text) => setName(text)}
         />
         <Input
           label="Email"
           placeholder="Enter Your Email"
-          value={cUser.email}
           onChangeText={(text) => setEmail(text)}
         />
         <Input
           label="Phone"
           placeholder="Enter Your Phone"
-          value={cUser.phone}
           onChangeText={(text) => setPhone(text)}
         />
         <Button title="Save" />

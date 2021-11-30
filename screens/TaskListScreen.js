@@ -32,7 +32,7 @@ const TaskListScreen = ({ route }) => {
 
   useEffect(() => {
     axios
-      .get(`${baseURL}tasks`, pName)
+      .get(`${baseURL}tasks/${pName}`)
       .then((res) => {
         setList(res.data);
         console.log(res.data);
@@ -73,6 +73,12 @@ const TaskListScreen = ({ route }) => {
   const renderItem = ({ item }) => (
     <ListItem
       bottomDivider
+      containerStyle={{
+        padding: 20,
+        borderRadius: 10,
+        marginVertical: 5,
+        backgroundColor: "#a8dadccc",
+      }}
       onPress={() => {
         navigation.navigate("EditTask", { task: item });
       }}
@@ -81,8 +87,7 @@ const TaskListScreen = ({ route }) => {
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
         <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
-        <Text>Assigned to: {item.member}</Text>
-        <Text>start Date: {item.startDate}</Text>
+
         <Text>End Date: {item.endDate}</Text>
       </ListItem.Content>
       <ListItem.Chevron />
@@ -115,6 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#1d3557cc",
   },
   fab: {
     position: "absolute",

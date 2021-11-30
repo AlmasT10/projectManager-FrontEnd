@@ -76,14 +76,13 @@ const EditTaskScreen = ({ route }) => {
           title="Save"
           onPress={() => {
             const t = {
-              name: name,
-              description: type,
-              project: pName,
-              member: { memberName, memberEmail },
+              name: task.name,
+              description: task.type,
+              project: task.project,
               startDate: startDate,
               endDate: endDate,
               hoursWorked: 0,
-              status: false,
+              status: isEnabled,
             };
             axios
               .put(`${baseURL}tasks/taskQ.id`, t)

@@ -73,6 +73,7 @@ const HomeScreen = (props) => {
       containerStyle={{
         borderRadius: 10,
         margin: 10,
+        backgroundColor: "#a8dadc",
       }}
       bottomDivider
       onPress={() => {
@@ -83,7 +84,7 @@ const HomeScreen = (props) => {
         <ListItem.Title>{item.name}</ListItem.Title>
         <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
         <Text>Project: {item.project}</Text>
-        <Text>start Date: {item.startDate}</Text>
+        {/* <Text>start Date: {item.startDate}</Text> */}
         <Text>End Date: {item.endDate}</Text>
       </ListItem.Content>
       <ListItem.Chevron />
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: colors.primary,
+    backgroundColor: "#1d3557cc",
   },
   listItem: {
     color: colors.secondary,

@@ -57,7 +57,7 @@ const ProjectListScreen = () => {
 
   const renderItem = ({ item }) => (
     <ListItem
-      style={styles.list}
+      containerStyle={styles.list}
       bottomDivider
       onPress={() => {
         navigation.navigate("TaskList", { title: item.id });
@@ -66,11 +66,11 @@ const ProjectListScreen = () => {
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
         <ListItem.Subtitle>{item.type}</ListItem.Subtitle>
-        <Text>Created by: {item.creator}</Text>
-        <Text>start Date: {item.startDate} </Text>
+        <Text>Created by: {item.createdBy}</Text>
+        <Text>start Date: {item.starDate} </Text>
         <Text>End Date: {item.endDate}</Text>
       </ListItem.Content>
-      <ListItem.Chevron />
+      <ListItem.Chevron color="black" />
     </ListItem>
   );
   return (
@@ -101,10 +101,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     margin: 5,
+    backgroundColor: "#1d3557cc",
   },
   list: {
     margin: 2,
     padding: 2,
+    borderRadius: 10,
+    backgroundColor: "#a8dadc",
   },
   fab: {
     position: "absolute",

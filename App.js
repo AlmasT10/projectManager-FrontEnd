@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useContext } from "react";
 
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import LoginScreen from "./screens/LoginScreen";
+import LoginScreen, { adminUser, isAdmin } from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProjectListScreen from "./screens/ProjectListScreen";
@@ -27,13 +27,17 @@ import EditTaskScreen from "./screens/EditTaskScreen";
 import ProjectMemberScreen from "./screens/ProjectMemberScreen";
 import ProjectSalaryScreen from "./screens/ProjectSalaryScreen";
 
+import Auth from "./context/store/Auth";
+import AuthGlobal from "./context/store/AuthGlobal";
+// import { userAdmin } from "./context/actions/authActions";
+
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   const navigation = useNavigation();
-
+  // console.log(userAdmin);
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -64,20 +68,23 @@ function MyTabs() {
           ),
         }}
       />
-      <Tab.Screen
-        name="MembersStack"
-        component={MemberStack}
-        options={{
-          tabBarLabel: "Members",
-          headerShown: false,
-          tabBarIcon: (props) => (
-            <Button
-              icon={<FontAwesome name="group" size={24} color="black" />}
-              type="clear"
-            />
-          ),
-        }}
-      />
+      {adminUser === true ? (
+        <Tab.Screen
+          name="MembersStack"
+          component={MemberStack}
+          options={{
+            tabBarLabel: "Members",
+            headerShown: false,
+            tabBarIcon: (props) => (
+              <Button
+                icon={<FontAwesome name="group" size={24} color="black" />}
+                type="clear"
+              />
+            ),
+          }}
+        />
+      ) : null}
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
